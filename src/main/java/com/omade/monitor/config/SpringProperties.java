@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.chinacloud.bds.datastorage.config;
+package com.omade.monitor.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

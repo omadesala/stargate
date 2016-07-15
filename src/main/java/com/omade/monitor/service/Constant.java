@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.service;
+package com.omade.monitor.service;
 
 public class Constant {
 

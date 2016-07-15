@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301 USA
  **/
-package com.chinacloud.bds.datastorage.utils;
+package com.omade.monitor.utils;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;

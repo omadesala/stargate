@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.control;
+package com.omade.monitor.control;
 
 import java.util.Map;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chinacloud.bds.datastorage.config.ServiceProperties;
-import com.chinacloud.bds.datastorage.utils.Produces;
+import com.omade.monitor.config.ServiceProperties;
+import com.omade.monitor.utils.Produces;
 
 @RestController
 @RequestMapping("/demo")

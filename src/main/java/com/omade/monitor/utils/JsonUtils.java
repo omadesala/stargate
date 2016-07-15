@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.utils;
+package com.omade.monitor.utils;
 
 import java.io.IOException;
 

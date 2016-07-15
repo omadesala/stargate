@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.configuration;
+package com.omade.monitor.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

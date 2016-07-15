@@ -1,3 +1,4 @@
+package com.omade.monitor.domain;
 //package com.chinacloud.bds.datastorage.domain;
 //
 //import org.springframework.data.repository.CrudRepository;

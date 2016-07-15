@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.chinacloud.bds.datastorage.config;
+package com.omade.monitor.config;
 
 import java.util.ArrayList;
 import java.util.Collections;

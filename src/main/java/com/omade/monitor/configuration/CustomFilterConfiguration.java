@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.configuration;
+package com.omade.monitor.configuration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -8,7 +8,7 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.chinacloud.bds.datastorage.service.CustomFilter;
+import com.omade.monitor.service.CustomFilter;
 
 // @ImportResource("classpath*:one-auth-bean.xml")
 @ComponentScan(basePackages = { "com.chinacloud.bds.datastorage" })

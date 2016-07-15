@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.configuration;
+package com.omade.monitor.configuration;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;

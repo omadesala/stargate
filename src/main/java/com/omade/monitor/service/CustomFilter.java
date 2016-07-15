@@ -1,4 +1,4 @@
-package com.chinacloud.bds.datastorage.service;
+package com.omade.monitor.service;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Component;
 
-import com.chinacloud.bds.datastorage.config.ServiceProperties;
+import com.omade.monitor.config.ServiceProperties;
 
 @Component("customFilter")
 public class CustomFilter implements Filter {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.chinacloud.bds.datastorage;
+package com.omade.monitor;
 
 import javax.sql.DataSource;
 
@@ -26,9 +26,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.chinacloud.bds.datastorage.config.ServiceProperties;
-import com.chinacloud.bds.datastorage.configuration.CostumBeanDefinitionRegistryPostProcessor;
 import com.mangofactory.swagger.plugin.EnableSwagger;
+import com.omade.monitor.config.ServiceProperties;
+import com.omade.monitor.configuration.CostumBeanDefinitionRegistryPostProcessor;
 
 @SpringBootApplication
 @EnableSwagger

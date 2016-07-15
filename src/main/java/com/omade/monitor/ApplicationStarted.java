@@ -1,12 +1,12 @@
-package com.chinacloud.bds.datastorage;
+package com.omade.monitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-import com.chinacloud.bds.datastorage.config.ServiceProperties;
-import com.chinacloud.bds.datastorage.config.SpringProperties;
+import com.omade.monitor.config.ServiceProperties;
+import com.omade.monitor.config.SpringProperties;
 
 public class ApplicationStarted implements
 		ApplicationListener<ContextRefreshedEvent> {
