@@ -25,7 +25,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.Maps;
-import com.rackspacecloud.client.cloudfiles.FilesClient;
 
 //@ConfigurationProperties(prefix = "service", ignoreUnknownFields = false)
 @ConfigurationProperties(prefix = "service", locations = "classpath:application.properties")
@@ -42,11 +41,6 @@ public class ServiceProperties {
 	private String oneaaclientid = "";
 	private String oneaasecret = "";
 	private String oneaapolicyfile = "";
-
-	private ConcurrentMap<String, FilesClient> usrIdClients = Maps
-			.newConcurrentMap();
-	private ConcurrentMap<String, String> usrIdSecretKey = Maps
-			.newConcurrentMap();
 
 	private List<String> userNameList = Collections
 			.synchronizedList(new ArrayList<String>());
@@ -84,30 +78,6 @@ public class ServiceProperties {
 
 	public void setAdminkey(String adminkey) {
 		this.adminkey = adminkey;
-	}
-
-	public ConcurrentMap<String, FilesClient> getUsrIdClients() {
-		return usrIdClients;
-	}
-
-	public void setUsrIdClients(ConcurrentMap<String, FilesClient> usrIdClients) {
-		this.usrIdClients = usrIdClients;
-	}
-
-	public ConcurrentMap<String, String> getUsrIdSecretKey() {
-		return this.usrIdSecretKey;
-	}
-
-	public void setUsrIdSecretKey(ConcurrentMap<String, String> usrIdSecretKey) {
-		this.usrIdSecretKey = usrIdSecretKey;
-	}
-
-	public List<String> getUserNameList() {
-		return userNameList;
-	}
-
-	public void setUserNameList(List<String> userNameList) {
-		this.userNameList = userNameList;
 	}
 
 	public ConcurrentMap<String, String> getUsrIdSwiftToken() {

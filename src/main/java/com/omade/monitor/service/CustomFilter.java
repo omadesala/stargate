@@ -40,6 +40,7 @@ public class CustomFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		logger.info("doFilter...");
+		chain.doFilter(request, response);
 	}
 
 	@Override

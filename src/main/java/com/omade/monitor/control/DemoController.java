@@ -1,6 +1,8 @@
 package com.omade.monitor.control;
 
+import java.sql.Date;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.omade.monitor.config.ServiceProperties;
+import com.omade.monitor.domain.DeviceDao;
+import com.omade.monitor.domain.DeviceItem;
+import com.omade.monitor.utils.MD5Util;
 import com.omade.monitor.utils.Produces;
 
 @RestController
@@ -26,6 +31,9 @@ public class DemoController {
 	@SuppressWarnings("unused")
 	@Autowired
 	private EhCacheCacheManager ehcache;
+
+	@Autowired
+	private DeviceDao jobDao;
 
 	@SuppressWarnings("unused")
 	@Autowired
@@ -42,6 +50,24 @@ public class DemoController {
 	public void listContainer(HttpServletRequest request,
 			HttpServletResponse response) {
 		logger.info("uri: " + "/swift/v1");
+	}
+
+	@RequestMapping(value = "/jpa", method = RequestMethod.GET, produces = Produces.JSON_STRING)
+	public void createRecord(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		logger.info("uri: " + request.getRequestURI());
+		DeviceItem recored = new DeviceItem();
+
+		String idStr = UUID.randomUUID().toString();
+		recored.setIdstr(idStr);
+		recored.setDescription("descripe what used for such device");
+		recored.setMd5(MD5Util.MD5(idStr));
+		recored.setCreatedate(new Date(System.currentTimeMillis()));
+
+		jobDao.save(recored);
+		logger.info("add data to storage:  ");
+
 	}
 
 }

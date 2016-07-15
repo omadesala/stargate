@@ -42,12 +42,12 @@ ServiceProperties.class })
 // @EnableAutoConfiguration(exclude = {
 // org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class
 // })
-public class DataStorageApplication {
+public class Application {
 
 	public static void main(String[] args) throws Exception {
 
 		SpringApplication springApplication = new SpringApplication(
-				DataStorageApplication.class);
+				Application.class);
 		springApplication.addListeners(new ApplicationStartUp());
 		springApplication.addListeners(new ApplicationStarted());
 		springApplication.run(args);
