@@ -48,6 +48,9 @@ public class DeviceItem implements Serializable {
 	@Column(nullable = false)
 	private String md5;
 
+	@Column(nullable = false)
+	private Boolean del;
+
 	public DeviceItem() {
 	}
 
@@ -56,13 +59,14 @@ public class DeviceItem implements Serializable {
 	}
 
 	public DeviceItem(Long id, String idstr, String description,
-			Date createDate, String md5) {
+			Date createDate, String md5, Boolean del) {
 
 		this.id = id;
 		this.idstr = idstr;
 		this.description = description;
 		this.createdate = createDate;
 		this.md5 = md5;
+		this.del = del;
 
 	}
 
@@ -110,11 +114,19 @@ public class DeviceItem implements Serializable {
 		return serialVersionUID;
 	}
 
+	public Boolean getDel() {
+		return del;
+	}
+
+	public void setDel(Boolean del) {
+		this.del = del;
+	}
+
 	@Override
 	public String toString() {
-		return "DeviceTable [id=" + id + ", idstr=" + idstr + ", description="
+		return "DeviceItem [id=" + id + ", idstr=" + idstr + ", description="
 				+ description + ", createdate=" + createdate + ", md5=" + md5
-				+ "]";
+				+ ", del=" + del + "]";
 	}
 
 }

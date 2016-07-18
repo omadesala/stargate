@@ -1,5 +1,8 @@
 package com.omade.monitor.domain;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface DeviceDao extends CrudRepository<DeviceItem, Long> {
 
-	public DeviceItem findByjobid(String idstr);
+	public DeviceItem findByidstr(String idstr);
+
+	@Query("select md5 from DeviceItem")
+	public List<String> findDevicesMD5();
 
 }

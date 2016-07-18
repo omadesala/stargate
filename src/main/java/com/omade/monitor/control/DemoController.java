@@ -1,6 +1,7 @@
 package com.omade.monitor.control;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -67,6 +68,24 @@ public class DemoController {
 
 		jobDao.save(recored);
 		logger.info("add data to storage:  ");
+
+	}
+
+	@RequestMapping(value = "/devices", method = RequestMethod.GET, produces = Produces.JSON_STRING)
+	public Iterable<DeviceItem> showAllDeviceRecord(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		logger.info("uri: " + request.getRequestURI());
+		DeviceItem recored = new DeviceItem();
+
+		String idStr = UUID.randomUUID().toString();
+		recored.setIdstr(idStr);
+		recored.setDescription("descripe what used for such device");
+		recored.setMd5(MD5Util.MD5(idStr));
+		recored.setCreatedate(new Date(System.currentTimeMillis()));
+		recored.setDel(false);
+
+		return jobDao.findAll();
 
 	}
 

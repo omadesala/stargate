@@ -18,6 +18,8 @@ package com.omade.monitor;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,16 +35,11 @@ import com.omade.monitor.configuration.CostumBeanDefinitionRegistryPostProcessor
 @SpringBootApplication
 @EnableSwagger
 @ComponentScan
-// @Configuration
-// @ImportResource({ "classpath*:one-auth-bean.xml" })
-// @PropertySources({ @PropertySource("classpath*:oneaasdk.properties"), })
-@EnableConfigurationProperties({/* OneAASDKProperties.class, */
-ServiceProperties.class })
-// ServiceProperties.class, SpringProperties.class, PolicyProperties.class })
-// @EnableAutoConfiguration(exclude = {
-// org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class
-// })
+@EnableConfigurationProperties({ ServiceProperties.class })
 public class Application {
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(Application.class);
 
 	public static void main(String[] args) throws Exception {
 
@@ -51,23 +48,11 @@ public class Application {
 		springApplication.addListeners(new ApplicationStartUp());
 		springApplication.addListeners(new ApplicationStarted());
 		springApplication.run(args);
-
-		// SpringApplication.run(DataStorageApplication.class, args);
 	}
-
-	// @Bean
-	// public static PropertySourcesPlaceholderConfigurer
-	// placeholderConfigurer() {
-	// PropertySourcesPlaceholderConfigurer c = new
-	// PropertySourcesPlaceholderConfigurer();
-	// c.setLocation(new ClassPathResource("oneaasdk.properties"));
-	// return c;
-	// }
 
 	@Bean
 	public BeanFactoryPostProcessor beanFactoryPostProcessor() {
 		return new CostumBeanDefinitionRegistryPostProcessor();
-		// return new DefaultFiltersBeanFactoryPostProcessor();
 	}
 
 	@Bean
@@ -75,12 +60,7 @@ public class Application {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
-				System.out.println("::::::::::::::flyway begin");
-				// Flyway flyway = new Flyway();
-				// flyway.setDataSource(dataSource);
-				// flyway.setInitOnMigrate(true);
-				// flyway.migrate();
-				// System.out.println("::::::::::::::flyway end");
+				logger.info("CommandLineRunner running ...");
 			}
 		};
 	}

@@ -16,45 +16,14 @@
 
 package com.omade.monitor.config;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Maps;
-
-//@ConfigurationProperties(prefix = "service", ignoreUnknownFields = false)
 @ConfigurationProperties(prefix = "service", locations = "classpath:application.properties")
 @Component("serviceProperties")
 public class ServiceProperties {
 
 	private String url = "localhost";
-	private String objectstoretype = "ceph";
-	private String adminid = "access_key";
-	private String adminkey = "secret_key";
-	private String exampleUrl = "exampleUrl";
-
-	private String oneaaurl = "";
-	private String oneaaclientid = "";
-	private String oneaasecret = "";
-	private String oneaapolicyfile = "";
-
-	private List<String> userNameList = Collections
-			.synchronizedList(new ArrayList<String>());
-
-	private ConcurrentMap<String, String> usrIdSwiftToken = Maps
-			.newConcurrentMap();
-
-	public String getObjectstoretype() {
-		return objectstoretype;
-	}
-
-	public void setObjectstoretype(String objectstoretype) {
-		this.objectstoretype = objectstoretype;
-	}
 
 	public String getUrl() {
 		return url;
@@ -62,70 +31,6 @@ public class ServiceProperties {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getAdminid() {
-		return adminid;
-	}
-
-	public void setAdminid(String adminid) {
-		this.adminid = adminid;
-	}
-
-	public String getAdminkey() {
-		return adminkey;
-	}
-
-	public void setAdminkey(String adminkey) {
-		this.adminkey = adminkey;
-	}
-
-	public ConcurrentMap<String, String> getUsrIdSwiftToken() {
-		return usrIdSwiftToken;
-	}
-
-	public void setUsrIdSwiftToken(ConcurrentMap<String, String> usrIdSwiftToken) {
-		this.usrIdSwiftToken = usrIdSwiftToken;
-	}
-
-	public String getExampleUrl() {
-		return exampleUrl;
-	}
-
-	public void setExampleUrl(String exampleUrl) {
-		this.exampleUrl = exampleUrl;
-	}
-
-	public String getOneaaurl() {
-		return oneaaurl;
-	}
-
-	public void setOneaaurl(String oneaaurl) {
-		this.oneaaurl = oneaaurl;
-	}
-
-	public String getOneaaclientid() {
-		return oneaaclientid;
-	}
-
-	public void setOneaaclientid(String oneaaclientid) {
-		this.oneaaclientid = oneaaclientid;
-	}
-
-	public String getOneaasecret() {
-		return oneaasecret;
-	}
-
-	public void setOneaasecret(String oneaasecret) {
-		this.oneaasecret = oneaasecret;
-	}
-
-	public String getOneaapolicyfile() {
-		return oneaapolicyfile;
-	}
-
-	public void setOneaapolicyfile(String oneaapolicyfile) {
-		this.oneaapolicyfile = oneaapolicyfile;
 	}
 
 }
