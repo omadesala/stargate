@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 public class ServiceProperties {
 
 	private String url = "localhost";
+	private String clientfolder = "";
 
 	public String getUrl() {
 		return url;
@@ -31,6 +32,14 @@ public class ServiceProperties {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getClientfolder() {
+		return clientfolder;
+	}
+
+	public void setClientfolder(String clientfolder) {
+		this.clientfolder = clientfolder;
 	}
 
 }

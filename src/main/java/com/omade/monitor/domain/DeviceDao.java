@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -28,9 +29,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface DeviceDao extends CrudRepository<DeviceItem, Long> {
 
-	public DeviceItem findByidstr(String idstr);
+	public DeviceItem findBydeviceid(String deviceid);
 
 	@Query("select md5 from DeviceItem")
 	public List<String> findDevicesMD5();
+
+	@Query("select deviceid from DeviceItem where deviceid =:id")
+	public List<String> devicesExists(@Param("id") String deviceid);
 
 }

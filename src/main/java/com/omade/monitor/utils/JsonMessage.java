@@ -4,29 +4,13 @@ import java.io.Serializable;
 
 import org.apache.commons.httpclient.HttpStatus;
 
-/**
- * @create bo.xu
- * @date Apr 20, 2016
- * @version 1.0
- * @description :y
- */
 public class JsonMessage implements Serializable {
 
 	private static final long serialVersionUID = -1882833679184634855L;
 
-	public static final Integer ERROR = 409;
-
-	public static final String NO_SUCH_CONTAINOR = "Container Not Found";
-	public static final String NO_SUCH_OBJECT = "Object Not Found";
-
-	/**
-	 * return status
-	 */
 	private Integer status = HttpStatus.SC_BAD_REQUEST;
-	/**
-	 * 文本信息
-	 */
-	private String message = "error";
+	private String message = "";
+	private String data = "";
 
 	public JsonMessage() {
 
@@ -51,6 +35,14 @@ public class JsonMessage implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 
 }

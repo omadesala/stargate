@@ -37,7 +37,7 @@ public class DeviceItem implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
-	private String idstr;
+	private String deviceid;
 
 	@Column(nullable = false)
 	private String description;
@@ -62,7 +62,7 @@ public class DeviceItem implements Serializable {
 			Date createDate, String md5, Boolean del) {
 
 		this.id = id;
-		this.idstr = idstr;
+		this.deviceid = idstr;
 		this.description = description;
 		this.createdate = createDate;
 		this.md5 = md5;
@@ -78,12 +78,12 @@ public class DeviceItem implements Serializable {
 		this.id = id;
 	}
 
-	public String getIdstr() {
-		return idstr;
+	public String getDeviceid() {
+		return deviceid;
 	}
 
-	public void setIdstr(String idstr) {
-		this.idstr = idstr;
+	public void setDeviceid(String deviceid) {
+		this.deviceid = deviceid;
 	}
 
 	public String getDescription() {
@@ -124,9 +124,9 @@ public class DeviceItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DeviceItem [id=" + id + ", idstr=" + idstr + ", description="
-				+ description + ", createdate=" + createdate + ", md5=" + md5
-				+ ", del=" + del + "]";
+		return "DeviceItem [id=" + id + ", deviceid=" + deviceid
+				+ ", description=" + description + ", createdate=" + createdate
+				+ ", md5=" + md5 + ", del=" + del + "]";
 	}
 
 }

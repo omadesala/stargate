@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -16,11 +17,46 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
-public class KettleFileUtils {
+public class GateFileUtils {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(KettleFileUtils.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(GateFileUtils.class);
 	private static final int MAXSIZE = 1024 * 1024;
+
+	public static String newVersion(String filePath) {
+
+		File file = new File(filePath);
+
+		if (!file.exists()) {
+			throw new IllegalStateException("client file folder not config");
+		}
+
+		File[] listFiles = file.listFiles();
+
+		if (listFiles != null) {
+
+			String[] versions = new String[listFiles.length];
+			int i = 0;
+			for (File file2 : listFiles) {
+				String name = file2.getName();
+				String substring = name.substring(name.lastIndexOf("-") + 1,
+						name.lastIndexOf("."));
+				versions[i++] = substring;
+
+			}
+			Arrays.sort(versions);
+
+			return versions[versions.length - 1];
+		}
+		throw new IllegalStateException("no client file !!!");
+
+	}
+
+	public static void main(String[] args) {
+
+		String newVersion = newVersion("D:\\workspace_\\stargate\\client");
+		logger.info(newVersion);
+	}
 
 	public static void write(String filename, String line) {
 
@@ -98,7 +134,7 @@ public class KettleFileUtils {
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdirs();
-			LOG.info(filePath + "create");
+			logger.info(filePath + "create");
 		}
 	}
 
@@ -108,10 +144,10 @@ public class KettleFileUtils {
 
 		File file = new File(filePath);
 		if (file.isDirectory() && file.exists()) {
-			LOG.info(filePath + "exist");
+			logger.info(filePath + "exist");
 			return true;
 		} else {
-			LOG.info(filePath + "not exist");
+			logger.info(filePath + "not exist");
 			return false;
 		}
 	}

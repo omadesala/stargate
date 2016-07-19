@@ -167,8 +167,8 @@ public class ShellCommandUtil {
 
         LOG.info("executeCmdByScirpt command: " + command);
         String file = "/tmp/" + UUID.randomUUID() + ".sh";
-        KettleFileUtils.write(file, "#!/usr/bin/env bash\n", true);
-        KettleFileUtils.write(file, command, true);
+        GateFileUtils.write(file, "#!/usr/bin/env bash\n", true);
+        GateFileUtils.write(file, command, true);
 
         String promote = "chmod 777 " + file;
         ShellCommandUtil.executeCmd(Splitter.on(" ").splitToList(promote));
@@ -176,7 +176,7 @@ public class ShellCommandUtil {
         LOG.info("executeStatus: " + executeStatus);
 
         LOG.info("delete file: " + file);
-        KettleFileUtils.delete(file);
+        GateFileUtils.delete(file);
 
         return executeStatus;
     }
