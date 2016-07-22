@@ -28,22 +28,22 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface DeviceDao extends CrudRepository<DeviceItem, Long> {
+public interface UserDao extends CrudRepository<UserItem, Long> {
 
-	@Query("from DeviceItem where deviceid =:id")
-	public DeviceItem findBydeviceid(@Param("id") String deviceid);
+	@Query("from UserItem where username =:name")
+	public UserItem findByUserName(@Param("name") String username);
 
-	@Query("select md5 from DeviceItem")
-	public List<String> findDevicesMD5();
+	@Query("select md5passwd from UserItem where username=:name")
+	public String findUserPassWordMD5(@Param("name") String username);
 
-	@Query("from DeviceItem where del = false")
-	public List<DeviceItem> findAllDevices();
+	@Query("from UserItem where del = false")
+	public List<UserItem> findAllUsers();
 
-	@Query("select deviceid from DeviceItem where deviceid =:id and del=false")
-	public List<String> devicesExists(@Param("id") String deviceid);
+	@Query("from UserItem where username =:name and del=false")
+	public List<UserItem> userExists(@Param("name") String username);
 
 	@Modifying(clearAutomatically = true)
-	@Query("update DeviceItem set del=true where deviceid =:id")
-	public void deleteDeviceById(@Param("id") String deviceid);
+	@Query("update UserItem set del=true where username =:name")
+	public void deleteUserByUserName(@Param("name") String username);
 
 }

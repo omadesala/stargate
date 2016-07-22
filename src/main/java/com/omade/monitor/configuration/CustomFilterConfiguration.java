@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.omade.monitor.service.CustomFilter;
 
-// @ImportResource("classpath*:one-auth-bean.xml")
 @ComponentScan(basePackages = { "com.chinacloud.bds.datastorage" })
 @Configuration
 public class CustomFilterConfiguration implements ServletContextInitializer {
@@ -19,7 +18,7 @@ public class CustomFilterConfiguration implements ServletContextInitializer {
 			throws ServletException {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		filterRegistrationBean.setFilter(new CustomFilter());
-		filterRegistrationBean.setOrder(Integer.MAX_VALUE - 1);
+		filterRegistrationBean.setOrder(Integer.MAX_VALUE);
 		filterRegistrationBean.setEnabled(true);
 		filterRegistrationBean.addUrlPatterns("/*");
 		return filterRegistrationBean;

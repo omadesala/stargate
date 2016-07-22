@@ -25,6 +25,8 @@ public class ServiceProperties {
 
 	private String url = "localhost";
 	private String clientfolder = "";
+	private String openapi = "";
+	private Boolean tokenswitch = false;
 
 	public String getUrl() {
 		return url;
@@ -40,6 +42,22 @@ public class ServiceProperties {
 
 	public void setClientfolder(String clientfolder) {
 		this.clientfolder = clientfolder;
+	}
+
+	public String getOpenapi() {
+		return openapi;
+	}
+
+	public void setOpenapi(String openapi) {
+		this.openapi = openapi;
+	}
+
+	public Boolean getTokenswitch() {
+		return tokenswitch;
+	}
+
+	public void setTokenswitch(Boolean tokenswitch) {
+		this.tokenswitch = tokenswitch;
 	}
 
 }

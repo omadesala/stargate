@@ -28,8 +28,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "devices")
-public class DeviceItem implements Serializable {
+@Table(name = "records")
+public class DataItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,27 +46,27 @@ public class DeviceItem implements Serializable {
 	@Column(nullable = false)
 	private Timestamp createdate;
 
-	@Column(nullable = false)
-	private String md5;
+	@Column(nullable = false, length = 4096)
+	private String data;
 
 	@Column(columnDefinition = "boolean default false", nullable = true)
 	private Boolean del;
 
-	public DeviceItem() {
+	public DataItem() {
 	}
 
-	public DeviceItem(Long id) {
+	public DataItem(Long id) {
 		this.id = id;
 	}
 
-	public DeviceItem(Long id, String idstr, String description,
-			Timestamp createDate, String md5, Boolean del) {
+	public DataItem(Long id, String idstr, String description,
+			Timestamp createDate, String data, Boolean del) {
 
 		this.id = id;
 		this.deviceid = idstr;
 		this.description = description;
 		this.createdate = createDate;
-		this.md5 = md5;
+		this.data = data;
 		this.del = del;
 
 	}
@@ -103,14 +103,6 @@ public class DeviceItem implements Serializable {
 		this.createdate = createdate;
 	}
 
-	public String getMd5() {
-		return md5;
-	}
-
-	public void setMd5(String md5) {
-		this.md5 = md5;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -123,11 +115,19 @@ public class DeviceItem implements Serializable {
 		this.del = del;
 	}
 
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	@Override
 	public String toString() {
-		return "DeviceItem [id=" + id + ", deviceid=" + deviceid
+		return "DataItem [id=" + id + ", deviceid=" + deviceid
 				+ ", description=" + description + ", createdate=" + createdate
-				+ ", md5=" + md5 + ", del=" + del + "]";
+				+ ", data=" + data + ", del=" + del + "]";
 	}
 
 }

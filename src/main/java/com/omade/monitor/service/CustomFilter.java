@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +17,18 @@ import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Component;
 
 import com.omade.monitor.config.ServiceProperties;
+import com.omade.monitor.configuration.CacheConfiguration;
+import com.omade.monitor.utils.EhCacheUtils;
 
 @Component("customFilter")
 public class CustomFilter implements Filter {
 
 	private static Logger logger = Logger.getLogger(CustomFilter.class);
 
-	@SuppressWarnings("unused")
 	@Autowired
 	@Qualifier("serviceProperties")
 	private ServiceProperties config;
 
-	@SuppressWarnings("unused")
 	@Autowired
 	private EhCacheCacheManager ehcache;
 
@@ -40,6 +41,20 @@ public class CustomFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		logger.info("doFilter...");
+
+		if (config.getTokenswitch() && request instanceof HttpServletRequest) {
+
+			String accessToken = ((HttpServletRequest) request)
+					.getHeader(Constant.XAUTH_TOKEN);
+			String requestURI = ((HttpServletRequest) request).getRequestURI();
+			logger.info("requestToken: " + accessToken);
+			logger.info("requestURI: " + requestURI);
+
+			if (!requestURI.startsWith(config.getOpenapi())) {
+				EhCacheUtils.getTokenFromNamedCache(ehcache,
+						CacheConfiguration.CACHE_USERID_TOKEN, accessToken);
+			}
+		}
 		chain.doFilter(request, response);
 	}
 

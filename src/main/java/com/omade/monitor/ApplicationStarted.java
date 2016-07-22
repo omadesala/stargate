@@ -10,7 +10,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.omade.monitor.config.ServiceProperties;
 import com.omade.monitor.config.SpringProperties;
+import com.omade.monitor.configuration.CacheConfiguration;
 import com.omade.monitor.domain.DeviceDao;
+import com.omade.monitor.domain.DeviceItem;
+import com.omade.monitor.utils.EhCacheUtils;
 
 public class ApplicationStarted implements
 		ApplicationListener<ContextRefreshedEvent> {
@@ -31,19 +34,19 @@ public class ApplicationStarted implements
 		ServiceProperties serviceProperties = (ServiceProperties) event
 				.getApplicationContext().getBean("serviceProperties");
 
-		// generate the token cache
-
 		DeviceDao dao = (DeviceDao) event.getApplicationContext().getBean(
 				"deviceDao");
 
-		List<String> findDevicesMD5 = dao.findDevicesMD5();
-		// @SuppressWarnings("unused")
-		// EhCacheCacheManager ehcache = (EhCacheCacheManager) event
-		// .getApplicationContext().getBean("ehCacheCacheManager");
+		List<DeviceItem> findAllDevices = dao.findAllDevices();
 
-		for (String md5 : findDevicesMD5) {
-			LOG.info("md5: " + md5);
-			// ehcache.
+		EhCacheCacheManager ehcache = (EhCacheCacheManager) event
+				.getApplicationContext().getBean("appEhCacheCacheManager");
+
+		for (DeviceItem device : findAllDevices) {
+			String deviceid = device.getDeviceid();
+			String md5 = device.getMd5();
+			EhCacheUtils.update(ehcache, CacheConfiguration.CACHE_USERID_TOKEN,
+					md5, deviceid);
 		}
 
 	}

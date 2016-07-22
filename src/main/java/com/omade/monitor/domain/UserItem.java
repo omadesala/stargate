@@ -28,8 +28,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "devices")
-public class DeviceItem implements Serializable {
+@Table(name = "users")
+public class UserItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class DeviceItem implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
-	private String deviceid;
+	private String username;
 
 	@Column(nullable = false)
 	private String description;
@@ -47,26 +47,26 @@ public class DeviceItem implements Serializable {
 	private Timestamp createdate;
 
 	@Column(nullable = false)
-	private String md5;
+	private String md5passwd;
 
-	@Column(columnDefinition = "boolean default false", nullable = true)
+	@Column(nullable = false)
 	private Boolean del;
 
-	public DeviceItem() {
+	public UserItem() {
 	}
 
-	public DeviceItem(Long id) {
+	public UserItem(Long id) {
 		this.id = id;
 	}
 
-	public DeviceItem(Long id, String idstr, String description,
-			Timestamp createDate, String md5, Boolean del) {
+	public UserItem(Long id, String username, String description,
+			Timestamp createDate, String md5passwd, Boolean del) {
 
 		this.id = id;
-		this.deviceid = idstr;
+		this.username = username;
 		this.description = description;
 		this.createdate = createDate;
-		this.md5 = md5;
+		this.md5passwd = md5passwd;
 		this.del = del;
 
 	}
@@ -77,14 +77,6 @@ public class DeviceItem implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getDeviceid() {
-		return deviceid;
-	}
-
-	public void setDeviceid(String deviceid) {
-		this.deviceid = deviceid;
 	}
 
 	public String getDescription() {
@@ -103,14 +95,6 @@ public class DeviceItem implements Serializable {
 		this.createdate = createdate;
 	}
 
-	public String getMd5() {
-		return md5;
-	}
-
-	public void setMd5(String md5) {
-		this.md5 = md5;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -123,11 +107,27 @@ public class DeviceItem implements Serializable {
 		this.del = del;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getMd5passwd() {
+		return md5passwd;
+	}
+
+	public void setMd5passwd(String md5passwd) {
+		this.md5passwd = md5passwd;
+	}
+
 	@Override
 	public String toString() {
-		return "DeviceItem [id=" + id + ", deviceid=" + deviceid
+		return "UserItem [id=" + id + ", username=" + username
 				+ ", description=" + description + ", createdate=" + createdate
-				+ ", md5=" + md5 + ", del=" + del + "]";
+				+ ", md5passwd=" + md5passwd + ", del=" + del + "]";
 	}
 
 }

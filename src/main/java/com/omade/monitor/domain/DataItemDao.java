@@ -2,9 +2,12 @@ package com.omade.monitor.domain;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,22 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface DeviceDao extends CrudRepository<DeviceItem, Long> {
+public interface DataItemDao extends PagingAndSortingRepository<DataItem, Long> {
 
-	@Query("from DeviceItem where deviceid =:id")
-	public DeviceItem findBydeviceid(@Param("id") String deviceid);
-
-	@Query("select md5 from DeviceItem")
-	public List<String> findDevicesMD5();
-
-	@Query("from DeviceItem where del = false")
-	public List<DeviceItem> findAllDevices();
-
-	@Query("select deviceid from DeviceItem where deviceid =:id and del=false")
-	public List<String> devicesExists(@Param("id") String deviceid);
-
-	@Modifying(clearAutomatically = true)
-	@Query("update DeviceItem set del=true where deviceid =:id")
-	public void deleteDeviceById(@Param("id") String deviceid);
+	Page<DataItem> findBydeviceid(String deviceid, Pageable pageable);
 
 }

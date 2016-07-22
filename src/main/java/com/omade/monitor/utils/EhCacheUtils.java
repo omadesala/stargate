@@ -27,41 +27,26 @@ import com.google.common.base.Strings;
 
 public class EhCacheUtils {
 
-	public static void update(EhCacheCacheManager ehcache,
-			String cacheUseridToken, String userId, String token) {
+	public static void update(EhCacheCacheManager ehcache, String cacheName,
+			String tokenKey, String tokenValue) {
 
-		if (!Strings.isNullOrEmpty(token)) {
-
-			Cache cache = ehcache.getCache(cacheUseridToken);
-
-			// // 1. if oldtoken by userid is exist.
-			// ValueWrapper valueWrapper = cache.get(userId);
-			// String oldtoken = "";
-			// if (valueWrapper != null && valueWrapper.get() != null) {
-			// oldtoken = valueWrapper.get().toString();
-			// // 2. remove oldtoken
-			// cache.evict(oldtoken);
-			// }
-
-			// 3. update with new token(token -> userid)
-			cache.put(token, userId);
-
-			// 4. update userid->tokenf
-			// cache.put(userId, token);
+		if (!Strings.isNullOrEmpty(tokenKey)) {
+			Cache cache = ehcache.getCache(cacheName);
+			cache.put(tokenKey, tokenValue);
 		}
 	}
 
-	public static String getUserIdByToken(EhCacheCacheManager ehcache,
-			String cacheUseridToken, String token) {
+	public static String getTokenFromNamedCache(EhCacheCacheManager ehcache,
+			String cacheName, String tokenKey) {
 
-		Cache cache = ehcache.getCache(cacheUseridToken);
-		ValueWrapper useridWrapper = cache.get(token);
-		if (useridWrapper == null) {
+		Cache cache = ehcache.getCache(cacheName);
+		ValueWrapper tokenWrapper = cache.get(tokenKey);
+		if (tokenWrapper == null) {
 			throw new IllegalStateException("token is invalid");
 		}
 
-		String userid = useridWrapper.get().toString();
-		return userid;
+		String token = tokenWrapper.get().toString();
+		return token;
 	}
 
 }

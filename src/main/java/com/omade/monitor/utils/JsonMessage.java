@@ -10,7 +10,7 @@ public class JsonMessage implements Serializable {
 
 	private Integer status = HttpStatus.SC_BAD_REQUEST;
 	private String message = "";
-	private String data = "";
+	private Object data = "";
 
 	public JsonMessage() {
 
@@ -37,12 +37,17 @@ public class JsonMessage implements Serializable {
 		this.message = message;
 	}
 
-	public String getData() {
+	public Object getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 
+	@Override
+	public String toString() {
+		return "JsonMessage [status=" + status + ", message=" + message
+				+ ", data=" + data + "]";
+	}
 }
