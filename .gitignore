@@ -1,6 +1,7 @@
 /.classpath
 /.externalToolBuilders
 /.project
+/.gradle
 /.settings
 /build
 /client

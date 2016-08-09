@@ -1,0 +1,76 @@
+buildscript {
+  repositories {
+   maven { url "https://repo.spring.io/libs-release" }
+      mavenLocal()
+      mavenCentral()
+      }
+    
+   dependencies {
+     classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'stargate_s'
+    version =  '0.1.0'
+}
+
+springBoot {
+    mainClass = "com.omade.monitor.Application"
+    }
+
+repositories {
+    mavenLocal()
+    maven { url "http://192.168.0.54/nexus/content/groups/public" }
+    maven { url "http://192.168.0.54/nexus/content/repositories/thirdparty/" }
+    maven { url "https://repo.spring.io/libs-release" }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-dependencies:1.3.0.RELEASE'
+    compile 'org.springframework:spring-context-support:4.3.2.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter:1.3.0.RELEASE'
+    compile 'org.springframework.retry:spring-retry:1.1.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-aop:1.3.0.RELEASE'
+    compile 'com.mangofactory:swagger-springmvc:0.8.8'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.0.0'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.3.0.RELEASE'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:1.3.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.3.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-log4j:1.3.0.RELEASE'
+    compile ('org.springframework.boot:spring-boot-starter-test:1.3.0.RELEASE')
+    {
+      exclude module: 'org.slf4j:log4j-over-slf4j'
+      exclude module: 'org.springframework.boot:spring-boot-starter-logging'
+    }
+    compile 'org.springframework.boot:spring-boot-starter-security:1.3.0.RELEASE'
+    compile 'org.springframework.data:spring-data-commons-core:1.3.0.RELEASE'
+    compile 'mysql:mysql-connector-java'
+    compile 'com.google.guava:guava:18.0'
+    compile 'net.sf.ehcache:ehcache:2.10.2'
+    compile 'it.sauronsoftware.cron4j:cron4j:2.2.5'
+    compile 'joda-time:joda-time:2.8.2'
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-httpclient:commons-httpclient:3.1'
+    compile 'org.aspectj:aspectjweaver:1.8.7'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'org.apache.logging.log4j:log4j-api:2.5'
+    compile 'org.apache.logging.log4j:log4j-core:2.5'
+    compile 'org.apache.logging.log4j:log4j-web:2.5'
+    compile 'org.powermock:powermock-core:1.6.4'
+    compile 'org.powermock:powermock-api-mockito:1.6.4'
+    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+    compile 'org.json:json:20160212'
+
+    testRuntime  'org.powermock:powermock-module-junit4:1.6.4'
+    testCompile("junit:junit")
+    }
+
