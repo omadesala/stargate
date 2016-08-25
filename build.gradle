@@ -15,6 +15,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
+
 jar {
     baseName = 'stargate_s'
     version =  '0.1.0'
@@ -23,6 +28,22 @@ jar {
 springBoot {
     mainClass = "com.omade.monitor.Application"
     }
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+  manifest {
+    attributes 'Implementation-Title': 'Gradle Jar File Example',  
+               'Implementation-Version': "$jar.version",
+	       'Main-Class': 'com.omade.monitor.Application'
+	   }
+    //baseName = project.name + '-all'+"-$jar.version"
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+
 
 repositories {
     mavenLocal()
